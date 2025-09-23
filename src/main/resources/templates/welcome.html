@@ -21,6 +21,9 @@
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="/actuator/health" target="_blank">Health</a>
                 <a class="nav-link" href="/api/hello">API</a>
+                <!-- I added the following lines to change the web lenguage -->
+                <a class="nav-link" th:href="@{/(lang=es)}"> es </a>
+                <a class="nav-link" th:href="@{/(lang=en)}"> en </a>
             </div>
         </div>
     </nav>
@@ -31,7 +34,7 @@
                 <div class="card shadow">
                     <div class="card-body text-center p-5">
                         <img class="d-block mx-auto mb-4 main-logo" src="/assets/logo.svg" alt="Universidad Zaragoza Logo">
-                        <h1 class="display-4 fw-bold text-primary mb-4">Welcome to Modern Web App</h1>
+                        <h1 class="display-4 fw-bold text-primary mb-4" th:text="#{title.greeting}"></h1>
                         <p class="lead mb-4" th:text="${message}">Hello student.</p>
                         
                         <!-- HTTP Debug Section -->
@@ -40,14 +43,12 @@
                                 <div class="card">
                                     <div class="card-header bg-info text-white">
                                         <h5 class="card-title mb-0">
-                                            <i class="bi bi-code-slash"></i> Interactive HTTP Testing & Debug
-                                            <small class="float-end">Client-Side Educational Tool</small>
+                                            <i class="bi bi-code-slash" th:text="#{main.title}"></i>
+                                            <small class="float-end" th:text="#{main.title.right}"></small>
                                         </h5>
                                     </div>
                                     <div class="card-body">
-                                        <p class="text-muted mb-3">
-                                            This section demonstrates HTTP requests and responses using JavaScript Fetch API. 
-                                            All interactions below will show real HTTP communication in action!
+                                        <p class="text-muted mb-3" th:text="#{main.resume}">
                                         </p>
                                         
                                         <!-- Interactive HTTP Testing -->
@@ -55,36 +56,36 @@
                                             <div class="col-md-4">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h6 class="card-title">Web Page Greeting</h6>
-                                                        <p class="small text-muted">Test the main web page with personalized greeting</p>
+                                                        <h6 class="card-title" th:text="#{main.section1.title}"></h6>
+                                                        <p class="small text-muted" th:text="#{main.section1.subtitle}"></p>
                                                         <div class="mb-3">
-                                                            <input type="text" id="webName" class="form-control" placeholder="Enter your name" th:value="${name}">
+                                                            <input type="text" id="webName" class="form-control" th:placeholder="#{main.section1.placeholder}" th:value="${name}">
                                                         </div>
-                                                        <button id="testWebBtn" class="btn btn-primary w-100">Test Web Page</button>
+                                                        <button id="testWebBtn" class="btn btn-primary w-100" th:text="#{main.section1.button}"></button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                         <h6 class="card-title">API Endpoints</h6>
-                                                        <p class="small text-muted">Test the REST API with JSON response</p>
+                                                         <h6 class="card-title" th:text="#{main.section2.title}"></h6>
+                                                        <p class="small text-muted" th:text="#{main.section2.subtitle}"></p>
                                                         <div class="mb-3">
-                                                            <input type="text" id="apiName" class="form-control" placeholder="Enter name (optional)" value="Student">
+                                                            <input type="text" id="apiName" class="form-control" th:placeholder="#{main.section2.placeholder}" th:value="#{main.section2.placeholder.value}">
                                                         </div>
-                                                        <button id="testApiBtn" class="btn btn-success w-100">Test /api/hello</button>
+                                                        <button id="testApiBtn" class="btn btn-success w-100" th:text="#{main.section2.button}"></button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h6 class="card-title">Health Check</h6>
-                                                        <p class="small text-muted">Test the application health endpoint</p>
+                                                        <h6 class="card-title" th:text="#{main.section3.title}"></h6>
+                                                        <p class="small text-muted" th:text="#{main.section3.subtitle}"></p>
                                                         <div class="mb-3">
-                                                            <button id="testHealthBtn" class="btn btn-warning w-100">Test /actuator/health</button>
+                                                            <button id="testHealthBtn" class="btn btn-warning w-100" th:text="#{main.section3.button1}"></button>
                                                         </div>
-                                                        <button id="openDevToolsBtn" class="btn btn-outline-info w-100">How to Open Dev Tools</button>
+                                                        <button id="openDevToolsBtn" class="btn btn-outline-info w-100" th:text="#{main.section3.button2}"></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -94,19 +95,19 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <h6 class="text-primary text-start">
-                                                    <i class="bi bi-arrow-right-circle"></i> HTTP Request
+                                                    <i class="bi bi-arrow-right-circle" th:text="#{http.request}"></i>
                                                 </h6>
                                                 <div id="requestInfo" class="bg-light p-3 rounded text-start http-debug-request">
-                                                    <div class="text-muted">Click a test button above to see HTTP request details...</div>
+                                                    <div class="text-muted" th:text="#{http.request.placeholder}"></div>
                                                 </div>
                                             </div>
                                             
                                             <div class="col-md-6">
                                                 <h6 class="text-success text-start">
-                                                    <i class="bi bi-arrow-left-circle"></i> HTTP Response
+                                                    <i class="bi bi-arrow-left-circle" th:text="#{http.response}"></i>
                                                 </h6>
                                                 <div id="responseInfo" class="bg-light p-3 rounded text-start http-debug-response">
-                                                    <div class="text-muted">Click a test button above to see HTTP response details...</div>
+                                                    <div class="text-muted" th:text="#{http.response.placeholder}"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,14 +115,14 @@
                                         <div class="mt-3">
                                             <div class="alert alert-info text-start">
                                                 <h6 class="alert-heading text-start">
-                                                    <i class="bi bi-lightbulb"></i> Learning Notes:
+                                                    <i class="bi bi-lightbulb" th:text="#{notes.title}"></i>
                                                 </h6>
                                                 <ul class="mb-0 text-start">
-                                                    <li><strong>Fetch API:</strong> Modern JavaScript way to make HTTP requests</li>
-                                                    <li><strong>Promise-based:</strong> Asynchronous operations using .then() and async/await</li>
-                                                    <li><strong>JSON Response:</strong> API endpoints return structured data</li>
-                                                    <li><strong>Status Codes:</strong> 200 = success, 404 = not found, 500 = server error</li>
-                                                    <li><strong>Headers:</strong> Metadata sent with every request and response</li>
+                                                    <li><strong th:text="#{notes.api.strong}"></strong> <span th:text="#{notes.api}"></span></li>
+                                                    <li><strong th:text="#{notes.promise.strong}"></strong> <span th:text="#{notes.promise}"></span></li>
+                                                    <li><strong th:text="#{notes.json.strong}"></strong> <span th:text="#{notes.json}"></span></li>
+                                                    <li><strong th:text="#{notes.status.strong}"></strong> <span th:text="#{notes.status}"></span></li>
+                                                    <li><strong th:text="#{notes.headers.strong}"></strong> <span th:text="#{notes.headers}"></span></li>
                                                 </ul>
                                             </div>
                                         </div>
