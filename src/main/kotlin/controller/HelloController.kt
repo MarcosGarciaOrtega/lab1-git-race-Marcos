@@ -14,6 +14,7 @@ import java.util.Locale
 
 @Controller
 class HelloController(
+    //The messagesSource is in charge of reading the messages.properties files
     private val messageSource: MessageSource
 ) {
     
@@ -22,7 +23,9 @@ class HelloController(
         model: Model,
         @RequestParam(defaultValue = "") name: String
     ): String {
+        //We add locale to ensure tha the display messages are in the current language
         val locale = LocaleContextHolder.getLocale()
+        //In the next line we build the message
         val greeting = if (name.isNotBlank()) messageSource.getMessage("greeting", arrayOf(name), locale)
                         else messageSource.getMessage("subtitle.greeting", null,  locale)
         model.addAttribute("message", greeting)
