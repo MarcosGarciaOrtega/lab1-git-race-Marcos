@@ -25,7 +25,7 @@ class IntegrationTest {
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(response.body).contains("<title>Modern Web App</title>")
         assertThat(response.body).contains("Welcome to Modern Web App")
-        assertThat(response.body).contains("Interactive HTTP Testing & Debug")
+        assertThat(response.body).contains("Interactive HTTP Testing &amp; Debug")
         assertThat(response.body).contains("Client-Side Educational Tool")
     }
 
@@ -69,7 +69,7 @@ class IntegrationTest {
         val response = restTemplate.getForEntity("http://localhost:$port?name=Student", String::class.java)
         
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body).contains("Interactive HTTP Testing & Debug")
+        assertThat(response.body).contains("Interactive HTTP Testing &amp; Debug")
         assertThat(response.body).contains("Client-Side Educational Tool")
         assertThat(response.body).contains("Web Page Greeting")
         assertThat(response.body).contains("API Endpoint")

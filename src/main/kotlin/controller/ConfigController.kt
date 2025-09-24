@@ -29,7 +29,7 @@ class ConfigController : WebMvcConfigurer {
     @Bean
     fun localeResolver() : LocaleResolver {
         var slr = SessionLocaleResolver()
-        slr.setDefaultLocale(Locale.ENGLISH)
+        slr.setDefaultLocale(Locale("en"))
         return slr
     }
 

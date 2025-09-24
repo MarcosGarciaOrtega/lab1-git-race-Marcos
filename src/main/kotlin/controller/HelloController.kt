@@ -42,9 +42,9 @@ class HelloApiController(
     fun helloApi(
         @RequestParam(defaultValue = "world") name: String): Map<String, String> {
         val locale = LocaleContextHolder.getLocale()
-        val message = messageSource.getMessage("greeting", null, locale)
+        val message = messageSource.getMessage("greeting", arrayOf(name), locale)
         return mapOf(
-            "message" to "$message, $name!",
+            "message" to "$message",
             "timestamp" to java.time.Instant.now().toString()
         )
     }
